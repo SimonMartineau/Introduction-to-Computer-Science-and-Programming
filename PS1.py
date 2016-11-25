@@ -23,10 +23,31 @@ print('Remaining balance: $', remaining_balance)
 
 # Problem Set 1
 # Name: Simon Martineau
-# Time Spent:
+# Time Spent: 1:00
 # Section b:
 
+balance = float(input('Enter the outstanding balance on your credit card: '))
+anual_credit_card_interest_rate = float(input('Enter the annual credit card interest rate as a decimal: '))
 
+monthly_payment = 0.00
+total_paid = 0.00
+running_balance = float(balance)
+months = 0
+
+while (total_paid < running_balance):
+    total_paid = 0
+    running_balance = balance
+    monthly_payment += 10
+    for month in range(1,13):
+        running_balance = round(running_balance * (1 + anual_credit_card_interest_rate / 12.0) - monthly_payment,2)
+        months = month
+        if (total_paid > running_balance):
+            break
+
+print('RESULT')
+print('Monthly payment to pay off debt in 1 year: ',monthly_payment)
+print('Number of months needed: ', months)
+print('Balance:' , running_balance)
 
 # Problem Set 1
 # Name: Simon Martineau
