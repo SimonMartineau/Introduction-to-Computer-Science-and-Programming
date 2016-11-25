@@ -16,3 +16,10 @@ Month: 1
 Minimum monthly payment: $96.0 
 Principle paid: $16.0 
 Remaining balance: $4784.0 
+
+Calculations
+Minimum monthly payment = Minimum monthly payment rate x Balance
+(Minimum monthly payment gets split into interest paid and principal paid) 
+Interest Paid = Annual interest rate / 12 months x Balance 
+Principal paid = Minimum monthly payment – Interest paid 
+Remaining balance = Balance – Principal paid 
