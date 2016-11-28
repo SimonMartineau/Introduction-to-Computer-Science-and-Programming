@@ -70,3 +70,10 @@ def compute_root(poly, x_0, epsilon):
     returns: tuple (float, int)
     """
     # TO DO ... 
+    iterations = 1;
+    zero_check = evaluate_poly(poly, x_0)
+    while(abs(zero_check) > epsilon):
+        iterations+=1
+        x_0 = x_0 - evaluate_poly(poly, x_0)/evaluate_poly(compute_deriv(poly), x_0) 
+        zero_check = evaluate_poly(poly, x_0)
+    return (x_0,iterations)     
