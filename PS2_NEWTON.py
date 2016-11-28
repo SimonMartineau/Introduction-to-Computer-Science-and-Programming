@@ -47,7 +47,7 @@ def compute_deriv(poly):
 
 # Problem Set 2c
 # Name: Simon Martineau
-# Time: 
+# Time: 0:22
 
 def compute_root(poly, x_0, epsilon):
     """
