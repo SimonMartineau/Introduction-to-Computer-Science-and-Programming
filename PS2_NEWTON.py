@@ -1,7 +1,7 @@
 #https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-00sc-introduction-to-computer-science-and-programming-spring-2011/unit-1/lecture-6-recursion/MIT6_00SCS11_ps2.pdf
 # Problem Set 2a
 # Name: Simon Martineau
-# Time: 
+# Time: 0:30
 def evaluate_poly(poly, x):
     """
     Computes the polynomial function for a given value x. Returns that value.
@@ -17,10 +17,14 @@ def evaluate_poly(poly, x):
     returns: float
     """
     # TO DO ...
+    result = 0.00
+    for coeffcient in range(0,len(poly)):
+        result += poly[coeffcient]*x**coeffcient
+    return result
    
 # Problem Set 2b
 # Name: Simon Martineau
-# Time: 
+# Time: 0:30
 
 def compute_deriv(poly):
     """
@@ -36,7 +40,11 @@ def compute_deriv(poly):
     returns: tuple of numbers
     """
     # TO DO ... 
-    
+    result = (0.0,)
+    for coeffcient in range(2,len(poly)):
+        result += (poly[coeffcient]*coeffcient,)
+    return result
+
 # Problem Set 2c
 # Name: Simon Martineau
 # Time: 
