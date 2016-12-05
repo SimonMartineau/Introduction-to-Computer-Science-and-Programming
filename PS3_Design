@@ -3,3 +3,16 @@ https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-00sc-i
 This problem set has a lot of "helper" code, which may not transition smoothly to 3.4.x python. 
 Going to attempt to work around the helper code before I begin breaking down the actual problem set.
 
+Let’s begin by describing the 6.00 wordgame: This game is a lot like Scrabble or Text Twist, if you’ve played those. Letters are dealt to players, who then construct one or more words out of their letters. Each valid word receives a score, based on the length of the word and the letters in that word. 
+The rules of the game are as follows: 
+
+Dealing 
+•A player is dealt a hand of n letters chosen at random (assume n=7 for now). 
+•The player arranges the hand into as many words as they want out of the letters, but using each letter at most once. 
+•Some letters may remain unused (these won’t be scored).
+
+Scoring 
+•The score for the hand is the sum of the score for the words times the length of the word. 
+•The score for a word is the sum of the points for letters in the word, multiplied by the length of the word, plus 50 points if all n letters are used on the first go. 
+•Letters are scored as in Scrabble; A is worth 1, B is worth 3, C is worth 3, D is worth 2, E is worth 1, and so on. We have defined the dictionary  SCRABBLE_LETTER_VALUES that maps each lowercase letter to its Scrabble letter value. 
+•For example, ‘weed’ would be worth 32 points ((4+1+1+2)*4=32), as long as the hand actually has 1 ‘w’, 2 ‘e’s, and 1 ‘d’. 
