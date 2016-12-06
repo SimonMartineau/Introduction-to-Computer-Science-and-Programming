@@ -5,12 +5,10 @@
 
 import random
 import string
-
 #functions
 def findLetterInString(guessed_letter, search_word):
     search_word = search_word.upper()
     return search_word.find(guessed_letter.upper())
-
 def updateDisplay(guess_letter):
     display_list = list(display_answer)
     answer_list = list(answer)
@@ -18,7 +16,6 @@ def updateDisplay(guess_letter):
         if guess_letter.lower() == answer_list[letter_counter]:
             display_list[letter_counter] = guess_letter.lower()
     return "".join(display_list)
-
 #variable declaration
 wordlist = ['pineapple', 'dog', 'cookie', 'cupcake', 'cat']
 answer = random.choice(wordlist)
@@ -26,13 +23,11 @@ alphabet = string.ascii_uppercase;
 guess_amount = 8
 guessed_letters = ""
 display_answer = ""
-
 #set up the game
 print("Welcome to Hangman!")
 for letter in answer:
     display_answer += '_'
 print("You will have ", guess_amount ," guesses to select the missing letters.")
-
 while(answer != display_answer and guess_amount != 0):
     #play the game
     print("The word is ", display_answer)
@@ -49,7 +44,6 @@ while(answer != display_answer and guess_amount != 0):
         print(guess_letter , "Not found")
     guessed_letters += guess_letter
     print("==============================================")
-
     
 #win or lose
 if guess_amount == 0:
