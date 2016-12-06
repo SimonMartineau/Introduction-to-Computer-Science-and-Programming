@@ -5,10 +5,45 @@
 
 import random
 import string
+
+WORDLIST_FILENAME = "words.txt"
+
+def load_words():
+    """
+    Returns a list of valid words. Words are strings of lowercase letters.
+    
+    Depending on the size of the word list, this function may
+    take a while to finish.
+    """
+    print("Loading word list from file...")
+    # inFile: file
+    inFile = open(WORDLIST_FILENAME, 'r')
+    # wordlist: list of strings
+    wordlist = inFile.split(" ")
+    print("  ", len(wordlist), "words loaded.")
+    return wordlist
+
+def choose_word(wordlist):
+    """
+    wordlist (list): list of words (strings)
+
+    Returns a word from wordlist at random
+    """
+    return random.choice(wordlist)
+
+# end of helper code
+# -----------------------------------
+
+# actually load the dictionary of words and point to it with 
+# the wordlist variable so that it can be accessed from anywhere
+# in the program
+wordlist = load_words()
+
 #functions
 def findLetterInString(guessed_letter, search_word):
     search_word = search_word.upper()
     return search_word.find(guessed_letter.upper())
+
 def updateDisplay(guess_letter):
     display_list = list(display_answer)
     answer_list = list(answer)
@@ -16,21 +51,24 @@ def updateDisplay(guess_letter):
         if guess_letter.lower() == answer_list[letter_counter]:
             display_list[letter_counter] = guess_letter.lower()
     return "".join(display_list)
+
 #variable declaration
-wordlist = ['pineapple', 'dog', 'cookie', 'cupcake', 'cat']
 answer = random.choice(wordlist)
 alphabet = string.ascii_uppercase;
 guess_amount = 8
 guessed_letters = ""
 display_answer = ""
+
 #set up the game
 print("Welcome to Hangman!")
 for letter in answer:
-    display_answer += '_'
+    print(letter)
+    display_answer += "_"
 print("You will have ", guess_amount ," guesses to select the missing letters.")
+
 while(answer != display_answer and guess_amount != 0):
     #play the game
-    print("The word is ", display_answer)
+    #print("The word is ", display_answer)
     print('Remaining guesses:', guess_amount)
     print("You have guess: ", guessed_letters)
     guess_letter = input("Enter a letter as your guess: ")
@@ -44,6 +82,7 @@ while(answer != display_answer and guess_amount != 0):
         print(guess_letter , "Not found")
     guessed_letters += guess_letter
     print("==============================================")
+
     
 #win or lose
 if guess_amount == 0:
@@ -54,4 +93,4 @@ if guess_amount == 0:
         print("You have lost!")
 else:
     print("You have won!")
-print("The answer was ",answer)  
+print("The answer was ",answer) 
