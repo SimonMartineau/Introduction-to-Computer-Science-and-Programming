@@ -78,6 +78,12 @@ def get_word_score(word, n):
     returns: int >= 0
     """
     # TO DO...
+    score = 0
+    for letter in word:
+        score += SCRABBLE_LETTER_VALUES[letter]*len(word)
+    if n == len(word):
+        score += 50
+    return score
     
 #
 # Make sure you understand how this function works and what it does!
@@ -115,7 +121,7 @@ def deal_hand(n):
     returns: dictionary (string -> int)
     """
     hand={}
-    num_vowels = n / 3
+    num_vowels = int(n / 3)
     
     for i in range(num_vowels):
         x = VOWELS[random.randrange(0,len(VOWELS))]
@@ -146,6 +152,10 @@ def update_hand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
+    updated_hand = hand
+    for letter in word:
+        updated_hand[letter] -= 1
+    return updated_hand
     # TO DO ...
 
 #
@@ -162,6 +172,9 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     """
     # TO DO...
+    is_word = False
+    
+    return is_word
 
 def calculate_handlen(hand):
     handlen = 0
@@ -222,6 +235,16 @@ def play_game(word_list):
     * If the user inputs anything else, ask them again.
     """
     # TO DO...
+    # play = input("Please enter 'n' or 'r' or 'e'").lowercase
+    play = "n"
+    while play != "n" and play != "r" and play != "e":
+        play = input("Please enter 'n' or 'r' or 'e'").lowercase
+    if play == "n":
+        print("")
+    elif play == "r":
+        print("")
+    elif play == "n":
+        print("")
 
 #
 # Build data structures used for entire session and play game
