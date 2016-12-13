@@ -152,15 +152,18 @@ def update_hand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    updated_hand = hand
+    updated_hand = dict(hand)
     for letter in word:
         updated_hand[letter] -= 1
+        if updated_hand[letter] == 0:
+            del updated_hand[letter]
     return updated_hand
     # TO DO ...
 
 #
 # Problem #3: Test word validity
 #
+
 def is_valid_word(word, hand, word_list):
     """
     Returns True if word is in the word_list and is entirely
@@ -173,7 +176,15 @@ def is_valid_word(word, hand, word_list):
     """
     # TO DO...
     is_word = False
-    
+    letters_in_hand = dict(hand)
+    if word in word_list:
+        for letter in word:
+            if letter in letters_in_hand:
+                letters_in_hand = update_hand(letters_in_hand, letter)
+                is_word = True
+            else:
+                is_word = False
+                break
     return is_word
 
 def calculate_handlen(hand):
@@ -214,6 +225,33 @@ def play_hand(hand, word_list):
       
     """
     # TO DO ...
+    player_hand = dict(hand)
+
+    print("Your hand is: ")
+    display_hand(player_hand)
+    hand_score = 0
+    
+    print("you may input . to end the hand")
+    word = input("Please enter a word using the letters from your hand: ")
+    word = word.lower()
+    while word != ".":
+        
+        while not is_valid_word(word,player_hand,word_list) and word != ".":
+            print("you may input . to end the hand")
+            word = input("Please enter a word using the letters from your hand: ")
+        if word == ".":
+            break;
+        word_score = get_word_score(word,calculate_handlen(player_hand))
+        hand_score += word_score
+        player_hand = update_hand(player_hand, word)
+        print("You have scored: ", word_score, " with the word: " , word)
+
+        print("remaining letters: ")
+        display_hand(player_hand)
+
+    print("You have achieved a final score of: ", hand_score, " using your hand." )
+    
+    
 
 #
 # Problem #5: Playing a game
@@ -236,16 +274,21 @@ def play_game(word_list):
     """
     # TO DO...
     # play = input("Please enter 'n' or 'r' or 'e'").lowercase
-    play = "n"
-    while play != "n" and play != "r" and play != "e":
-        play = input("Please enter 'n' or 'r' or 'e'").lowercase
-    if play == "n":
-        print("")
-    elif play == "r":
-        print("")
-    elif play == "n":
-        print("")
 
+    print("Thank you for playing, dealing your starting hand")
+    play = "n"
+    while play != "e":
+        while play != "n" and play != "r" and play != "e":
+            play = input("Please enter 'n' or 'r' or 'e'")
+            play = play.lower()
+        if play == "n":
+            hand = deal_hand(7)
+            play_hand(hand, word_list)
+        elif play == "r":
+            play_hand(hand, word_list)
+        play = input("Please enter 'n' for new hand or 'r' for replay or 'e' to exit ")
+        play = play.lower()
+    print("Thank you for playing.")
 #
 # Build data structures used for entire session and play game
 #
